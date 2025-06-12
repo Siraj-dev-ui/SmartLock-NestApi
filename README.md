@@ -25,7 +25,11 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Project setup
+## Project setup and Commands
+
+### Generate Resourse (Users)
+
+nest g resourse users
 
 ```bash
 $ yarn install
