@@ -9,3 +9,6 @@ export enum RoomStatus {
   OCCUPIED = 'Free',
   FREE = 'Free',
 }
+
+// export enum Actions
+//

@@ -8,7 +8,7 @@ export class DoorsController {
   constructor(private readonly doorsService: DoorsService) {}
   @Get('test')
   test() {
-    return 'door controller working...';
+    return { id: 2, name: 'siraj' };
   }
 
   @Post('add-door')
@@ -16,13 +16,29 @@ export class DoorsController {
     return this.doorsService.create(data);
   }
 
+  @Post('testpost')
+  TestPost(@Body() data) {
+    console.log(data);
+    return 'success';
+  }
+
   @Patch('update-door-status')
   UpdateDoorStatus(@Body() data) {
     return 'updated door status api.';
   }
 
+  @Patch('update-door-room-status')
+  UpdateDoorRoomStatus(@Body() data) {
+    return 'updated door room status api.';
+  }
+
   @Get('check-door-status')
   CheckDoorStatus(@Body() data) {
     return 'Check door status api.';
+  }
+
+  @Get('check-door-room-status')
+  CheckDoorRoomStatus(@Body() data) {
+    return 'Check door room status api.';
   }
 }

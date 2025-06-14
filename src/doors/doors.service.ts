@@ -15,4 +15,12 @@ export class DoorsService {
     const createdDoor = new this.doorModel(createDoorDto); // ✅ FIXED
     return createdDoor.save();
   }
+
+  async updateDoorStatus(updateDoorStatusDto: CreateDoorDto) {
+    return await this.doorModel.findOneAndUpdate(
+      { door_lock_Id: '234' },
+      { $set: { door_status: 'open' } },
+      { new: true },
+    );
+  }
 }
