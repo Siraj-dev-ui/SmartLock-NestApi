@@ -22,3 +22,4 @@ export class Door {
 }
 
 export const DoorSchema = SchemaFactory.createForClass(Door);
+DoorSchema.set('timestamps', true);
