@@ -14,9 +14,24 @@ import { RegisterUserDto } from './dto/register-user.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  create(@Body() data: RegisterUserDto) {
+  @Post('registration-request')
+  RegistrationRequest(@Body() data: RegisterUserDto) {
     return this.usersService.create(data);
+  }
+
+  @Post('approve-user')
+  Approve(@Body() data) {
+    return 'Approve Registration Request';
+  }
+
+  @Post('reject-user')
+  RejectUser(@Body() data) {
+    return 'Reject Registration Request';
+  }
+
+  @Post('login')
+  Login(@Body() data: RegisterUserDto) {
+    return 'login in user api';
   }
 
   @Get()
