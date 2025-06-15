@@ -19,6 +19,16 @@ export class Door {
 
   @Prop()
   door_room_status: string;
+
+  @Prop({
+    type: Map,
+    of: {
+      opening_time: { type: String }, // e.g., "10:00"
+      closing_time: { type: String }, // e.g., "14:00"
+    },
+    default: {},
+  })
+  schedule: Map<string, { opening_time: string; closing_time: string }>;
 }
 
 export const DoorSchema = SchemaFactory.createForClass(Door);
