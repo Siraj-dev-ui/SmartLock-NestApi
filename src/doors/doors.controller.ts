@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Put } from '@nestjs/common';
 import { DoorsService } from './doors.service';
 import { Door } from './schema/door.schema';
 import { CreateDoorDto } from './dtos/create-door.dto';
@@ -8,7 +8,7 @@ export class DoorsController {
   constructor(private readonly doorsService: DoorsService) {}
   @Get('test')
   test() {
-    return 'door controller working...';
+    return { id: 2, name: 'siraj' };
   }
 
   @Post('add-door')
@@ -16,13 +16,44 @@ export class DoorsController {
     return this.doorsService.create(data);
   }
 
+  @Post('testpost')
+  TestPost(@Body() data) {
+    console.log(data);
+    return 'success';
+  }
+
   @Patch('update-door-status')
   UpdateDoorStatus(@Body() data) {
     return 'updated door status api.';
   }
 
+  @Patch('update-door-room-status')
+  UpdateDoorRoomStatus(@Body() data) {
+    return 'updated door room status api.';
+  }
+
+  @Patch('update-door-lock-status')
+  UpdateDoorLock(@Body() data) {
+    return 'updated door room status api.';
+  }
+
+  @Put('update-timings')
+  UpdateTimings(@Body() data) {
+    return 'Update LAB timings..';
+  }
+
+  @Get('get-door')
+  GetDoorData(@Body() data) {
+    return 'Getting Door Data';
+  }
+
   @Get('check-door-status')
   CheckDoorStatus(@Body() data) {
     return 'Check door status api.';
+  }
+
+  @Get('check-door-room-status')
+  CheckDoorRoomStatus(@Body() data) {
+    return 'Check door room status api.';
   }
 }
