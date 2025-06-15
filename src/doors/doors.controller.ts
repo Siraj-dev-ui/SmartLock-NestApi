@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Put } from '@nestjs/common';
 import { DoorsService } from './doors.service';
 import { Door } from './schema/door.schema';
 import { CreateDoorDto } from './dtos/create-door.dto';
@@ -30,6 +30,21 @@ export class DoorsController {
   @Patch('update-door-room-status')
   UpdateDoorRoomStatus(@Body() data) {
     return 'updated door room status api.';
+  }
+
+  @Patch('update-door-lock-status')
+  UpdateDoorLock(@Body() data) {
+    return 'updated door room status api.';
+  }
+
+  @Put('update-timings')
+  UpdateTimings(@Body() data) {
+    return 'Update LAB timings..';
+  }
+
+  @Get('get-door')
+  GetDoorData(@Body() data) {
+    return 'Getting Door Data';
   }
 
   @Get('check-door-status')
