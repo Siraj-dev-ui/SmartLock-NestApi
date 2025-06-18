@@ -13,7 +13,7 @@ export class DoorsService {
     console.log('create door dto data : ', createDoorDto);
 
     const createdDoor = new this.doorModel(createDoorDto); // ✅ FIXED
-    return createdDoor.save();
+    return await createdDoor.save();
   }
 
   async updateDoorStatus(updateDoorStatusDto: CreateDoorDto) {
