@@ -10,5 +10,11 @@ export enum RoomStatus {
   FREE = 'Free',
 }
 
+export enum RequestStatus {
+  APPROVE = 'Approved',
+  REJECT = 'Rejected',
+  PENDING = 'Pending',
+}
+
 // export enum Actions
 //
