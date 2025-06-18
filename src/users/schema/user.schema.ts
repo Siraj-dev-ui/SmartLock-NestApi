@@ -14,8 +14,8 @@ export class User {
   @Prop()
   password: string;
 
-  @Prop()
-  register_request_status: string;
+  @Prop({ default: 'Pending' })
+  request_status: string;
 
   @Prop()
   requested_role: string;
@@ -23,7 +23,7 @@ export class User {
   @Prop()
   mobile_id: string;
 
-  @Prop()
+  @Prop({ default: false })
   current_presence: boolean;
 }
 
