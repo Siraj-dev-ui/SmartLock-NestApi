@@ -6,41 +6,33 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RegisterUserDto } from './dto/register-user.dto';
+import { ObjectId } from 'mongoose';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('registration-request')
-  RegistrationRequest(@Body() data: RegisterUserDto) {
-    return this.usersService.create(data);
+  @Post('register-request')
+  async RegisterRequest(@Body() data: RegisterUserDto) {
+    return await this.usersService.RegisterRequest(data);
   }
 
-  @Post('approve-user')
-  Approve(@Body() data) {
-    return 'Approve Registration Request';
+  @Patch('approve-request')
+  async ApproveRequest(@Query('id') id: string) {
+    return await this.usersService.ApproveRequest(id);
   }
 
-  @Post('reject-user')
-  RejectUser(@Body() data) {
-    return 'Reject Registration Request';
+  @Patch('reject-request')
+  async RejectRequest(@Query('id') id: string) {
+    return await this.usersService.RejectRequest(id);
   }
 
   @Post('login')
-  Login(@Body() data: RegisterUserDto) {
-    return 'login in user api';
-  }
-
-  @Get()
-  findAll() {
-    return this.usersService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  async Login(@Body() data: RegisterUserDto) {
+    return await this.usersService.Login(data);
   }
 }
