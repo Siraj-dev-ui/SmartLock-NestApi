@@ -58,11 +58,15 @@ export class UsersService {
   }
 
   async Login(loginUserDto: LoginUserDto) {
-    const user = await this.userModel.findOne({
-      email: loginUserDto.email,
-      password: loginUserDto.password,
-    });
+    const user = await this.userModel.findOne(
+      {
+        email: loginUserDto.email,
+        password: loginUserDto.password,
+        request_status: { $ne: RequestStatus.REJECT },
+      },
+      { password: 0 },
+    );
 
-    return user ? { request_status: user.request_status } : [];
+    return user ? user : [];
   }
 }
