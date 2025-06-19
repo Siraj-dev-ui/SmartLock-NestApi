@@ -11,9 +11,31 @@ export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async RegisterRequest(createUserDto: RegisterUserDto) {
+    const user = await this.userModel.findOne(
+      {
+        email: createUserDto.email,
+        request_status: { $ne: 'Rejected' },
+      },
+      {
+        email: 1,
+        request_status: 1,
+      },
+    );
+
+    if (user) {
+      console.log('user already exists');
+
+      return { userFound: true, requestStatus: user.request_status };
+    }
+
     const registerRequest = new this.userModel(createUserDto);
 
-    return await registerRequest.save();
+    await registerRequest.save();
+
+    return {
+      userFound: false,
+      message: 'Your Request has been sended Wait for the approval.',
+    };
   }
 
   async ApproveRequest(id: string) {
