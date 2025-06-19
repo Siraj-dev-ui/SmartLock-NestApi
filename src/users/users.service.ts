@@ -60,7 +60,8 @@ export class UsersService {
   async Login(loginUserDto: LoginUserDto) {
     const user = await this.userModel.findOne(
       {
-        email: loginUserDto.email,
+        // email: loginUserDto.email,
+        email: { $regex: new RegExp(`^${loginUserDto.email}$`, 'i') },
         password: loginUserDto.password,
         request_status: { $ne: RequestStatus.REJECT },
       },

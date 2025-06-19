@@ -25,6 +25,9 @@ export class User {
 
   @Prop({ default: false })
   current_presence: boolean;
+
+  @Prop({ default: false })
+  auto_unlock: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

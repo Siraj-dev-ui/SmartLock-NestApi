@@ -16,5 +16,11 @@ export enum RequestStatus {
   PENDING = 'Pending',
 }
 
+export enum Roles {
+  ADMIN = 'Admin',
+  SUPERVISOR = 'Supervisor',
+  USER = 'User',
+}
+
 // export enum Actions
 //
