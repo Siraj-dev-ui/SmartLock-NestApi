@@ -6,8 +6,8 @@ export enum DoorStatus {
 }
 
 export enum RoomStatus {
-  OCCUPIED = 'Free',
-  FREE = 'Free',
+  OCCUPIED = 'Occupied',
+  VACANT = 'Vacant',
 }
 
 export enum RequestStatus {
