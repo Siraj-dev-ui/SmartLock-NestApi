@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Put, Query } from '@nestjs/common';
 import { DoorsService } from './doors.service';
 import { Door } from './schema/door.schema';
 import { CreateDoorDto } from './dtos/create-door.dto';
@@ -14,6 +14,11 @@ export class DoorsController {
   @Post('add-door')
   CreateDoor(@Body() data: CreateDoorDto) {
     return this.doorsService.create(data);
+  }
+
+  @Get('get-door')
+  async GetDoor(@Query('id') id: string) {
+    return await this.doorsService.GetDoor(id);
   }
 
   @Post('testpost')
