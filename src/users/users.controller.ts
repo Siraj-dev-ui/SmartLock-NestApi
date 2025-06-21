@@ -11,6 +11,7 @@ import {
 import { UsersService } from './users.service';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { ObjectId } from 'mongoose';
+import { AutoUnlockDto } from './dto/dtos';
 
 @Controller('users')
 export class UsersController {
@@ -30,6 +31,10 @@ export class UsersController {
   @Patch('reject-request')
   async RejectRequest(@Query('id') id: string) {
     return await this.usersService.RejectRequest(id);
+  }
+  @Patch('update-auto-unlock')
+  async UpdateAutoUnlock(@Body() data: AutoUnlockDto) {
+    return await this.usersService.UpdateAutoUnlock(data);
   }
 
   @Post('login')

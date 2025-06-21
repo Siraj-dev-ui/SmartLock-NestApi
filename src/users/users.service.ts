@@ -4,7 +4,8 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { User, UserDocument } from './schema/user.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { RequestStatus } from 'src/utils/enums';
+import { RequestStatus, Roles } from 'src/utils/enums';
+import { AutoUnlockDto } from './dto/dtos';
 
 @Injectable()
 export class UsersService {
@@ -69,5 +70,23 @@ export class UsersService {
     );
 
     return user ? user : [];
+  }
+
+  async getPresentSupervisorsCount(deviceId: string) {
+    return await this.userModel.countDocuments({
+      current_presence: true,
+      requested_role: Roles.SUPERVISOR,
+    });
+  }
+
+  async UpdateAutoUnlock(autoUnlockDto: AutoUnlockDto) {
+    console.log('dto : ', autoUnlockDto);
+
+    const resp = await this.userModel.findOneAndUpdate(
+      { _id: autoUnlockDto.id },
+      { auto_unlock: autoUnlockDto.autoUnlock },
+      { new: true },
+    );
+    return resp;
   }
 }
