@@ -22,5 +22,26 @@ export enum Roles {
   USER = 'User',
 }
 
+export const Actions = {
+  LOCK_DOOR: 1,
+  UNLOCK_DOOR: 2,
+  DOOR_OPENED: 3,
+  DOOR_CLOSED: 4,
+  ROOM_OCCUPIED: 5,
+  ROOM_VACANT: 6,
+  COMPLETE_ACTION: 7,
+};
+export const ActionStatus = {
+  PENDING: 'Pending',
+  COMPLETED: 'Completed',
+  DENIED: 'Denied',
+};
+
+export const Device = {
+  ID: 'Device_E0891425BF58',
+  //   DOOR_ID: 'Device_E0891425BF58s',
+  UNLOCK_DISTANCE: -60,
+};
+
 // export enum Actions
 //
