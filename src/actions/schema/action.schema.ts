@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { Actions, ActionStatus } from 'src/utils/enums';
 
 export type ActionDocument = HydratedDocument<Action>;
 
@@ -8,10 +9,10 @@ export class Action {
   @Prop()
   action_id: number;
 
-  @Prop()
+  @Prop({ default: ActionStatus.PENDING })
   action_status: string;
 
-  @Prop()
+  @Prop({ default: true })
   action_active: boolean;
 
   @Prop()
