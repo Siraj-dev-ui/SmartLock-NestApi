@@ -12,5 +12,6 @@ import { UsersModule } from 'src/users/users.module';
   ],
   providers: [DoorsService],
   controllers: [DoorsController],
+  exports: [DoorsService],
 })
 export class DoorsModule {}

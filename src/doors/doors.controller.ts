@@ -47,19 +47,4 @@ export class DoorsController {
   async UpdateTimings(@Body() data: ScheduleDto) {
     return await this.doorsService.UpdateTimings(data);
   }
-
-  @Get('get-door')
-  GetDoorData(@Body() data) {
-    return 'Getting Door Data';
-  }
-
-  @Get('check-door-status')
-  CheckDoorStatus(@Body() data) {
-    return 'Check door status api.';
-  }
-
-  @Get('check-door-room-status')
-  CheckDoorRoomStatus(@Body() data) {
-    return 'Check door room status api.';
-  }
 }

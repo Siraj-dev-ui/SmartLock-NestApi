@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { CreateDoorDto } from './dtos/create-door.dto';
 import { UsersService } from 'src/users/users.service';
 import { ScheduleDto } from './dtos/dtos';
+import { Device } from 'src/utils/enums';
 
 @Injectable()
 export class DoorsService {
@@ -48,5 +49,33 @@ export class DoorsService {
     );
 
     return resp;
+  }
+
+  async UpdateDoorStatus(status) {
+    const result = await this.doorModel.findOneAndUpdate(
+      { door_lock_Id: Device.ID },
+      { door_status: status },
+      { new: true },
+    );
+
+    return result ? true : false;
+  }
+  async UpdateRoomStatus(status) {
+    const result = await this.doorModel.findOneAndUpdate(
+      { door_lock_Id: Device.ID },
+      { door_room_status: status },
+      { new: true },
+    );
+
+    return result ? true : false;
+  }
+  async UpdateLockStatus(status) {
+    const result = await this.doorModel.findOneAndUpdate(
+      { door_lock_Id: Device.ID },
+      { door_lock_status: status },
+      { new: true },
+    );
+
+    return result ? true : false;
   }
 }
