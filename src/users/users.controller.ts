@@ -17,6 +17,10 @@ import { AutoUnlockDto } from './dto/dtos';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Get('pending-requests')
+  async GetPendingRequests() {
+    return await this.usersService.GetPendingRequests();
+  }
   @Post('register-request')
   async RegisterRequest(@Body() data: RegisterUserDto) {
     console.log('register request');

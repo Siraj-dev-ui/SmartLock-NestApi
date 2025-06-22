@@ -89,4 +89,8 @@ export class UsersService {
     );
     return resp;
   }
+
+  async GetPendingRequests() {
+    return await this.userModel.find({ request_status: RequestStatus.PENDING });
+  }
 }

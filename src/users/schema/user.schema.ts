@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { RequestStatus } from 'src/utils/enums';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -14,7 +15,7 @@ export class User {
   @Prop()
   password: string;
 
-  @Prop({ default: 'Pending' })
+  @Prop({ default: RequestStatus.PENDING })
   request_status: string;
 
   @Prop()
