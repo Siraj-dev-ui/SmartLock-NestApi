@@ -58,7 +58,7 @@ export class DoorsService {
       { new: true },
     );
 
-    return result ? true : false;
+    return result ? status : false;
   }
   async UpdateRoomStatus(status) {
     const result = await this.doorModel.findOneAndUpdate(
@@ -67,7 +67,7 @@ export class DoorsService {
       { new: true },
     );
 
-    return result ? true : false;
+    return result ? status : false;
   }
   async UpdateLockStatus(status) {
     const result = await this.doorModel.findOneAndUpdate(
@@ -76,6 +76,6 @@ export class DoorsService {
       { new: true },
     );
 
-    return result ? true : false;
+    return result ? status : false;
   }
 }
