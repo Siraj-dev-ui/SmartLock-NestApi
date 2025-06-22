@@ -4,6 +4,7 @@ import { Door, DoorDocument } from './schema/door.schema';
 import { Model } from 'mongoose';
 import { CreateDoorDto } from './dtos/create-door.dto';
 import { UsersService } from 'src/users/users.service';
+import { ScheduleDto } from './dtos/dtos';
 
 @Injectable()
 export class DoorsService {
@@ -37,5 +38,15 @@ export class DoorsService {
       { $set: { door_status: 'open' } },
       { new: true },
     );
+  }
+
+  async UpdateTimings(data: ScheduleDto) {
+    const resp = await this.doorModel.findOneAndUpdate(
+      { _id: data.id },
+      { schedule: data.schedule },
+      { new: true },
+    );
+
+    return resp;
   }
 }

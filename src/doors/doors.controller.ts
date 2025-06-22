@@ -2,6 +2,7 @@ import { Body, Controller, Get, Patch, Post, Put, Query } from '@nestjs/common';
 import { DoorsService } from './doors.service';
 import { Door } from './schema/door.schema';
 import { CreateDoorDto } from './dtos/create-door.dto';
+import { ScheduleDto } from './dtos/dtos';
 
 @Controller('doors')
 export class DoorsController {
@@ -42,9 +43,9 @@ export class DoorsController {
     return 'updated door room status api.';
   }
 
-  @Put('update-timings')
-  UpdateTimings(@Body() data) {
-    return 'Update LAB timings..';
+  @Patch('update-timings')
+  async UpdateTimings(@Body() data: ScheduleDto) {
+    return await this.doorsService.UpdateTimings(data);
   }
 
   @Get('get-door')
