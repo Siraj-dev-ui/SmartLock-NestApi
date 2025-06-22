@@ -13,6 +13,8 @@ import { Server, Socket } from 'socket.io';
   cors: {
     origin: '*',
   },
+  // pingTimeout: 10000,    // Time in ms before a client is considered disconnected after no pong
+  // pingInterval: 25000,
 })
 export class AppGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
@@ -39,7 +41,13 @@ export class AppGateway
   //   }
 
   // Custom event example
-  sendUpdate(data: any) {
-    this.server.emit('update', data);
+  updateDoorStatus(data: any) {
+    this.server.emit('updateDoorStatus', data);
+  }
+  updateLockStatus(data: any) {
+    this.server.emit('updateLockStatus', data);
+  }
+  updateRoomStatus(data: any) {
+    this.server.emit('updateRoomStatus', data);
   }
 }
