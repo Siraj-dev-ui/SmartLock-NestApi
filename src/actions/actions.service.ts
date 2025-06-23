@@ -73,13 +73,13 @@ export class ActionsService {
       case Actions.ROOM_OCCUPIED:
         console.log('room occupied');
         await this.doorService.UpdateRoomStatus(true);
-        this.appGateWay.updateDoorStatus({ status: true });
+        this.appGateWay.updateRoomStatus({ status: true });
         break;
 
       case Actions.ROOM_VACANT:
         console.log('room vacant');
         await this.doorService.UpdateRoomStatus(false);
-        this.appGateWay.updateDoorStatus({ status: false });
+        this.appGateWay.updateRoomStatus({ status: false });
     }
     return true;
   }
