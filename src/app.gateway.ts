@@ -50,4 +50,7 @@ export class AppGateway
   updateRoomStatus(data: any) {
     this.server.emit('updateRoomStatus', data);
   }
+  updateSupervisorCount(data: any) {
+    this.server.emit('updateSupervisorCount', data);
+  }
 }
