@@ -4,12 +4,16 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { User, UserDocument } from './schema/user.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { RequestStatus, Roles } from 'src/utils/enums';
+import { Device, RequestStatus, Roles } from 'src/utils/enums';
 import { AutoUnlockDto } from './dto/dtos';
+import { AppGateway } from 'src/app.gateway';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<UserDocument>,
+    private readonly appGateway: AppGateway,
+  ) {}
 
   async RegisterRequest(createUserDto: RegisterUserDto) {
     const user = await this.userModel.findOne(
@@ -92,5 +96,19 @@ export class UsersService {
 
   async GetPendingRequests() {
     return await this.userModel.find({ request_status: RequestStatus.PENDING });
+  }
+  async CheckedIn(id: string) {
+    await this.userModel.findByIdAndUpdate(
+      { _id: id },
+      { current_presence: true },
+      { new: true },
+    );
+    const supervisorCount = await this.getPresentSupervisorsCount(Device.ID);
+
+    if (supervisorCount > 0) {
+      this.appGateway.updateSupervisorCount({ count: supervisorCount });
+    }
+
+    return true;
   }
 }

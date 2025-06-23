@@ -41,6 +41,11 @@ export class UsersController {
     return await this.usersService.UpdateAutoUnlock(data);
   }
 
+  @Patch('checked-in')
+  async CheckedIn(@Query('id') id: string) {
+    return await this.usersService.CheckedIn(id);
+  }
+
   @Post('login')
   async Login(@Body() data: RegisterUserDto) {
     return await this.usersService.Login(data);
