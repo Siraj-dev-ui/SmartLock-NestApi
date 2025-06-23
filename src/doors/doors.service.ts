@@ -27,7 +27,7 @@ export class DoorsService {
 
     const [door, supervisorCount] = await Promise.all([
       this.doorModel.findOne({ door_lock_Id: id }),
-      this.userService.getPresentSupervisorsCount('Device123'),
+      this.userService.getPresentSupervisorsCount(Device.ID),
     ]);
 
     return { ...door?.toJSON(), supervisorCount: supervisorCount };
