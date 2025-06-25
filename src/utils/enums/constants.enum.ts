@@ -38,7 +38,8 @@ export const ActionStatus = {
 };
 
 export const Device = {
-  ID: 'Device_E0891425BF58',
+  // ID: 'Device_E0891425BF58',
+  ID: 'Device_F073AF6CDDA0',
   //   DOOR_ID: 'Device_E0891425BF58s',
   UNLOCK_DISTANCE: -60,
 };
