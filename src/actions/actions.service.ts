@@ -83,4 +83,12 @@ export class ActionsService {
     }
     return true;
   }
+
+  GetActiveClients() {
+    // return {
+    //   count: this.appGateWay.get,
+    // };
+
+    return true;
+  }
 }
