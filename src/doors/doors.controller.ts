@@ -24,7 +24,6 @@ export class DoorsController {
 
   @Post('testpost')
   TestPost(@Body() data) {
-    console.log(data);
     return 'success';
   }
 

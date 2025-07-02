@@ -15,9 +15,6 @@ export class DoorsService {
   ) {}
 
   async create(createDoorDto: CreateDoorDto): Promise<Door> {
-    console.log('inside door service...');
-    console.log('create door dto data : ', createDoorDto);
-
     const createdDoor = new this.doorModel(createDoorDto); // ✅ FIXED
     return await createdDoor.save();
   }
