@@ -7,13 +7,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 // import { UsersModule } from 'src/users/users.module';
 import { DoorsModule } from 'src/doors/doors.module';
 import { AppGateway } from 'src/app.gateway';
+import { WebsocketModule } from 'src/websocket/websocket.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Action.name, schema: ActionSchema }]),
     DoorsModule,
+    WebsocketModule,
   ],
-  providers: [ActionsService, AppGateway],
+  providers: [ActionsService],
   controllers: [ActionsController],
 })
 export class ActionsModule {}

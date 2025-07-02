@@ -9,6 +9,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ActionsModule } from './actions/actions.module';
 // import { LoggerMiddleware } from './utils/middleware/logger.middleware';
 import { AppGateway } from './app.gateway';
+import { WebsocketModule } from './websocket/websocket.module';
 
 @Module({
   // imports: [DatabaseModule, UsersModule, DoorsModule],
@@ -26,9 +27,10 @@ import { AppGateway } from './app.gateway';
     UsersModule,
     DoorsModule,
     ActionsModule,
+    WebsocketModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppGateway],
+  providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
