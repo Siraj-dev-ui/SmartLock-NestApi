@@ -90,6 +90,22 @@ export class ActionsService {
       Ids: this.appGateWay.getActiveClientIds(),
     };
 
+    // return true;
+  }
+
+  async DeleteAllExceptOne() {
+    const latestAction = await this.actionModel
+      .findOne({})
+      .sort({ createdAt: -1 }) // newest by createdAt
+      .select('createdAt'); // only get _id (or nothing if not needed)
+
+    // Step 2: Delete all other documents
+    if (latestAction) {
+      await this.actionModel.deleteMany({
+        createdAt: { $lt: latestAction.createdAt },
+      });
+    }
+
     return true;
   }
 }

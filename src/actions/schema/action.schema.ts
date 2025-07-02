@@ -17,6 +17,9 @@ export class Action {
 
   @Prop()
   action_message: string;
+
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export const ActionSchema = SchemaFactory.createForClass(Action);
