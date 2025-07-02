@@ -28,8 +28,6 @@ export class UsersService {
     );
 
     if (user) {
-      console.log('user already exists');
-
       return { userFound: true, requestStatus: user.request_status };
     }
 
@@ -84,8 +82,6 @@ export class UsersService {
   }
 
   async UpdateAutoUnlock(autoUnlockDto: AutoUnlockDto) {
-    console.log('dto : ', autoUnlockDto);
-
     const resp = await this.userModel.findOneAndUpdate(
       { _id: autoUnlockDto.id },
       { auto_unlock: autoUnlockDto.autoUnlock },

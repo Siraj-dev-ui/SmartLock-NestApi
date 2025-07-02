@@ -23,7 +23,6 @@ export class UsersController {
   }
   @Post('register-request')
   async RegisterRequest(@Body() data: RegisterUserDto) {
-    console.log('register request');
     return await this.usersService.RegisterRequest(data);
   }
 
