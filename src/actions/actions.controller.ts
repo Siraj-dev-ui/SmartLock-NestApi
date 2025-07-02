@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, Res } from '@nestjs/common';
 import { ActionsService } from './actions.service';
 import { AddActionDto } from './dtos/add-action.dto';
 import { Response } from 'express';
@@ -41,6 +41,11 @@ export class ActionsController {
   @Get('get-active-client')
   async GetActiveClients() {
     return await this.actionsService.GetActiveClients();
+  }
+
+  @Put('delete-all-excep-one')
+  async DeleteAllExceptOne() {
+    return await this.actionsService.DeleteAllExceptOne();
   }
 
   @Get('test')
