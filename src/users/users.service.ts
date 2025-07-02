@@ -111,4 +111,26 @@ export class UsersService {
 
     return true;
   }
+  async CheckOutAll() {
+    //  const usersWithPresence = await this.userModel.find({ current_presence: true });
+
+    await this.userModel.updateMany(
+      { current_presence: true },
+      { $set: { current_presence: false } },
+    );
+    this.appGateway.updateSupervisorCount({ count: 0 });
+
+    // await this.userModel.find(
+    //   { _id: id },
+    //   { current_presence: true },
+    //   { new: true },
+    // );
+    // const supervisorCount = await this.getPresentSupervisorsCount(Device.ID);
+
+    // if (supervisorCount > 0) {
+    //   this.appGateway.updateSupervisorCount({ count: supervisorCount });
+    // }
+
+    return true;
+  }
 }

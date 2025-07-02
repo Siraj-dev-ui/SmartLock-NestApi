@@ -67,6 +67,10 @@ export class DoorsService {
       { new: true },
     );
 
+    if (status === false) {
+      this.userService.CheckOutAll();
+    }
+
     return result ? status : false;
   }
   async UpdateLockStatus(status) {
