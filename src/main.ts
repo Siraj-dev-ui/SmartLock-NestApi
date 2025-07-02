@@ -10,7 +10,7 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
 
-  await app.listen(configService.get<number>('PORT') || 3000);
-  // await app.listen(process.env.PORT ?? 3000);
+  // await app.listen(configService.get<number>('PORT') || 3000);
+  await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
