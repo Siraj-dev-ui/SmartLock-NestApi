@@ -38,7 +38,7 @@ export class ActionsController {
     return await this.actionsService.SmartLockPostman(body.command);
   }
 
-  @Post('get-active-client')
+  @Get('get-active-client')
   async GetActiveClients() {
     return await this.actionsService.GetActiveClients();
   }

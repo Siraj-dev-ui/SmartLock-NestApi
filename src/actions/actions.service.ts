@@ -85,9 +85,10 @@ export class ActionsService {
   }
 
   GetActiveClients() {
-    // return {
-    //   count: this.appGateWay.get,
-    // };
+    return {
+      count: this.appGateWay.getActiveClientCount(),
+      Ids: this.appGateWay.getActiveClientIds(),
+    };
 
     return true;
   }

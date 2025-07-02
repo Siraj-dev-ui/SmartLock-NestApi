@@ -36,6 +36,14 @@ export class AppGateway
     this.activeClients.delete(client.id);
   }
 
+  getActiveClientCount(): number {
+    return this.activeClients.size;
+  }
+
+  getActiveClientIds(): string[] {
+    return Array.from(this.activeClients);
+  }
+
   // Custom event
   //   @SubscribeMessage('message')
   //   handleMessage(client: Socket, payload: any): void {
