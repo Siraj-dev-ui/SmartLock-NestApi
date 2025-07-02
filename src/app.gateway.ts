@@ -20,6 +20,7 @@ export class AppGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
   @WebSocketServer() server: Server;
+  private activeClients = new Set<string>();
 
   afterInit(server: Server) {
     console.log('WebSocket server initialized');
@@ -27,10 +28,12 @@ export class AppGateway
 
   handleConnection(client: Socket) {
     console.log(`Client connected: ${client.id}`);
+    this.activeClients.add(client.id);
   }
 
   handleDisconnect(client: Socket) {
     console.log(`Client disconnected: ${client.id}`);
+    this.activeClients.delete(client.id);
   }
 
   // Custom event
