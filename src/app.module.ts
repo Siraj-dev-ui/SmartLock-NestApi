@@ -13,12 +13,16 @@ import { AppGateway } from './app.gateway';
 @Module({
   // imports: [DatabaseModule, UsersModule, DoorsModule],
   imports: [
-    // ConfigModule.forRoot({
-    //   isGlobal: true, // makes ConfigService available everywhere without importing again
-    // }),
-    MongooseModule.forRoot(
-      'mongodb+srv://smartlock:smartlock@cluster0.ngqnqr3.mongodb.net/Smartlock?retryWrites=true&w=majority&appName=Cluster0',
-    ),
+    ConfigModule.forRoot({
+      isGlobal: true, // makes ConfigService available everywhere without importing again
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.get<string>('MONGODB_URI'),
+      }),
+      inject: [ConfigService],
+    }),
     UsersModule,
     DoorsModule,
     ActionsModule,
