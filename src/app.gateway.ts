@@ -27,12 +27,10 @@ export class AppGateway
   }
 
   handleConnection(client: Socket) {
-    console.log(`Client connected: ${client.id}`);
     this.activeClients.add(client.id);
   }
 
   handleDisconnect(client: Socket) {
-    console.log(`Client disconnected: ${client.id}`);
     this.activeClients.delete(client.id);
   }
 
@@ -47,7 +45,6 @@ export class AppGateway
   // Custom event
   //   @SubscribeMessage('message')
   //   handleMessage(client: Socket, payload: any): void {
-  //     console.log('Received message:', payload);
   //     this.server.emit('message', payload); // Broadcast to all clients
   //   }
 
