@@ -8,9 +8,15 @@ async function bootstrap() {
 
   app.enableCors();
 
-  const configService = app.get(ConfigService);
+  // const configService = app.get(ConfigService);
 
-  // await app.listen(configService.get<number>('PORT') || 3000);
-  await app.listen(process.env.PORT ?? 3000);
+  // // await app.listen(configService.get<number>('PORT') || 3000);
+  // await app.listen(process.env.PORT ?? 3000);
+
+  const configService = app.get(ConfigService);
+  const port = configService.get<number>('PORT') || 3000;
+
+  // ✅ Explicitly bind to 0.0.0.0
+  await app.listen(port, '0.0.0.0');
 }
 bootstrap();
